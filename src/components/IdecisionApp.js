@@ -17,6 +17,7 @@ export default class IndecisionApp extends React.Component {
     };
     clearSelectedOption = () => {this.setState(() => ({selectedOption: undefined,}));};
     clearOptions = () => {this.setState(() => ({options: [],}));};
+    removeOption = (optionToRemove) => {this.setState((prevState) => ({options: prevState.options.filter((option) => option !== optionToRemove),}));};
     addOption = (option) => {
         if(!option) {
             return 'Error: No option entered';
@@ -30,7 +31,7 @@ export default class IndecisionApp extends React.Component {
             <div>
                 <Header title="IndecisionApp_2.0" subtitle="Put your life in the hands of a computer"/>
                 <Action hasOption={this.state.options.length > 0} pickOption={this.pickOption}/>
-                <Options hasOption={this.state.options.length > 0} options={this.state.options} clearOptions={this.clearOptions}/>
+                <Options hasOption={this.state.options.length > 0} options={this.state.options} clearOptions={this.clearOptions} removeOption={this.removeOption}/>
                 <AddOption addOption={this.addOption}/>
                 <OptionModal selectedOption={this.state.selectedOption} clearSelectedOption={this.clearSelectedOption}/>
             </div>
