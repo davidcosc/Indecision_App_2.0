@@ -14,13 +14,14 @@ export default class IndecisionApp extends React.Component {
         const option = this.state.options[optionIndex];
         this.setState(() => ({selectedOption: option,}));
     };
-    clearSelectedOption = () => {this.setState(() => ({selectedOption: undefined,}))};
+    clearSelectedOption = () => {this.setState(() => ({selectedOption: undefined,}));};
+    clearOptions = () => {this.setState(() => ({options: [],}));};
     render() {
         return (
             <div>
                 <Header title="IndecisionApp_2.0" subtitle="Put your life in the hands of a computer"/>
                 <Action hasOption={this.state.options.length > 0} pickOption={this.pickOption}/>
-                <Options options={this.state.options}/>
+                <Options hasOption={this.state.options.length > 0} options={this.state.options} clearOptions={this.clearOptions}/>
                 <OptionModal selectedOption={this.state.selectedOption} clearSelectedOption={this.clearSelectedOption}/>
             </div>
         );
