@@ -7,7 +7,7 @@ import AddOption from './AddOption';
 
 export default class IndecisionApp extends React.Component {
     state = {
-        options: ['1', '2'],
+        options: [],
         selectedOption: undefined,
     };
     pickOption = () => {
@@ -26,6 +26,25 @@ export default class IndecisionApp extends React.Component {
         }
         this.setState((prevState) => ({options: prevState.options.concat(option),}));
     };
+    componentDidMount() {
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+            if(options.length === 0) {
+                return;
+            }
+            this.setState(() => ({options: options,}));
+        } catch(e) {
+            //DO NOTHING
+        }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.options.length === this.state.options.length) {
+            return;
+        }
+        const json = JSON.stringify(this.state.options);
+        localStorage.setItem('options', json);
+    }
     render() {
         return (
             <div>
