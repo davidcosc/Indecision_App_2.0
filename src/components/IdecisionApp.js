@@ -3,6 +3,7 @@ import Header from './Header';
 import Action from './Action';
 import OptionModal from './OptionModal';
 import Options from './Options';
+import AddOption from './AddOption';
 
 export default class IndecisionApp extends React.Component {
     state = {
@@ -22,6 +23,7 @@ export default class IndecisionApp extends React.Component {
                 <Header title="IndecisionApp_2.0" subtitle="Put your life in the hands of a computer"/>
                 <Action hasOption={this.state.options.length > 0} pickOption={this.pickOption}/>
                 <Options hasOption={this.state.options.length > 0} options={this.state.options} clearOptions={this.clearOptions}/>
+                <AddOption/>
                 <OptionModal selectedOption={this.state.selectedOption} clearSelectedOption={this.clearSelectedOption}/>
             </div>
         );
