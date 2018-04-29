@@ -17,13 +17,21 @@ export default class IndecisionApp extends React.Component {
     };
     clearSelectedOption = () => {this.setState(() => ({selectedOption: undefined,}));};
     clearOptions = () => {this.setState(() => ({options: [],}));};
+    addOption = (option) => {
+        if(!option) {
+            return 'Error: No option entered';
+        } else if(this.state.options.indexOf(option) > -1) {
+            return 'Error: Duplicate option'
+        }
+        this.setState((prevState) => ({options: prevState.options.concat(option),}));
+    };
     render() {
         return (
             <div>
                 <Header title="IndecisionApp_2.0" subtitle="Put your life in the hands of a computer"/>
                 <Action hasOption={this.state.options.length > 0} pickOption={this.pickOption}/>
                 <Options hasOption={this.state.options.length > 0} options={this.state.options} clearOptions={this.clearOptions}/>
-                <AddOption/>
+                <AddOption addOption={this.addOption}/>
                 <OptionModal selectedOption={this.state.selectedOption} clearSelectedOption={this.clearSelectedOption}/>
             </div>
         );
