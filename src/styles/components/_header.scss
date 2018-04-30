@@ -1,0 +1,16 @@
+.header {
+  background: lightseagreen;
+}
+.header__content{
+  margin: 0 auto;
+  max-width: 60rem;
+  padding: $s-size;
+}
+.header__content__title {
+  color: white;
+  font-size: $l-size;
+}
+.header__content__subtitle {
+  color: white;
+  font-size: $m-size;
+}
